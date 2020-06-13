@@ -104,8 +104,8 @@ class IssuesTest extends TestCase
                 'expires_at'         => '2018-08-06',
             ],
             [
-                'duration_in_months' => null,
-                'expires_at'         => '1970-01-01',
+                'duration_in_months' => 1,
+                'expires_at'         => '2018-08-06',
             ],
         ]);
         (new FastExcel(clone $original_collection))->export(__DIR__.'/test2.xlsx');

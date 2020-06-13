@@ -219,7 +219,9 @@ trait Exportable
     private function transformRow($data)
     {
         return collect($data)->map(function ($value) {
-            return is_int($value) || is_float($value) ? ($value*1) : (string) $value;
+            return is_int($value) || is_float($value) ? ($value*1) : $value;
+        })->filter(function ($value) {
+            return is_int($value) || is_float($value) || is_string($value);
         });
     }
 
