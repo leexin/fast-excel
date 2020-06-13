@@ -4,6 +4,7 @@ namespace Rap2hpoutre\FastExcel;
 
 use Box\Spout\Writer\Style\Style;
 use Box\Spout\Writer\WriterFactory;
+use Carbon\Carbon;
 use Generator;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
@@ -219,7 +220,19 @@ trait Exportable
     private function transformRow($data)
     {
         return collect($data)->map(function ($value) {
-            return is_int($value) || is_float($value) ? ($value*1) : $value;
+
+            if ( is_int($value) || is_float($value) ){
+                return $value * 1;
+            }else{
+
+                if ( $timestamp = strtotime($value) ){
+                    return Carbon::createFromTimestamp($timestamp)->toDateTimeString();
+                }else{
+                    return $value;
+                }
+
+            }
+
         })->filter(function ($value) {
             return is_int($value) || is_float($value) || is_string($value);
         });
