@@ -53,7 +53,7 @@ class IssuesTest extends TestCase
     {
         chdir(__DIR__);
         $path = (new FastExcel($this->collection()))->export('test2.xlsx');
-        $this->assertEquals(__DIR__.'/test2.xlsx', $path);
+        $this->assertEquals(realpath(__DIR__.'/test2.xlsx'), $path);
         unlink($path);
     }
 
