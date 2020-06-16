@@ -224,13 +224,7 @@ trait Exportable
             if ( is_int($value) || is_float($value) ){
                 return $value * 1;
             }else{
-
-                if ( $timestamp = strtotime($value) ){
-                    return Carbon::createFromTimestamp($timestamp)->toDateTimeString();
-                }else{
-                    return $value;
-                }
-
+                return $value;
             }
 
         })->filter(function ($value) {
