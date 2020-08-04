@@ -228,7 +228,7 @@ trait Exportable
             }
 
         })->filter(function ($value) {
-            return is_int($value) || is_float($value) || is_string($value);
+            return is_int($value) || is_float($value) || is_string($value) || is_null($value);
         });
     }
 
